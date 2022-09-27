@@ -1,10 +1,11 @@
 Package: TewlBox
-Title: What the Package Does (One Line, Title Case)
+Title: Calculate specificity metrics
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Authors@R:
+    person("David", "Sturgill", , "dave.sturgill@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7902-3605"))
+Description: This package provides utilities for calculating specificity
+  metrics from expression data
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
