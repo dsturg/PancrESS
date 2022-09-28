@@ -9,7 +9,8 @@
 #'
 #' @return A either a matrix or a vector, depending on the method used
 #'
-#' @importFrom SingleCellExperiment edgeR Matrix.utils
+#' @importFrom edgeR gini 
+#' @importFrom Matrix.utils aggregate.Matrix
 #' @export
 bigESS <- function(sce,celltypes,aggmethod,specmethod) {
   
