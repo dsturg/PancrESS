@@ -2,4 +2,3 @@
 
 export(bigESS)
 export(load_mat)
-importFrom(edgeR,Matrix.utils)
