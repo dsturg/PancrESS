@@ -15,7 +15,8 @@ bigESS <- function(sce,celltypes,aggmethod,specmethod) {
   # Reduce sce object to cell types of interest
   mysce <- sce[,dittoSeq::meta("label",sce) %in% celltypes]
   # Aggregate counts by celltype
-  mymat <- as.matrix(t(counts(mysce)))
+  mymat <- as.matrix(counts(mysce))
+  mymat <- t(mymat)
   aggr_counts <- t(Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("label",mysce)), fun = aggmethod) )
   x <- as.matrix(aggr_counts)
 
