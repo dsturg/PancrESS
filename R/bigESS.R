@@ -12,7 +12,7 @@
 #' @export
 bigESS <- function(sce,celltypes,aggmethod,specmethod) {
 
-  # REduce sce object to cell types of interest
+  # Reduce sce object to cell types of interest
   mysce <- sce[,dittoSeq::meta("label",sce) %in% celltypes]
   # Aggregate counts by celltype
   mymat <- as.matrix(t(counts(mysce)))
