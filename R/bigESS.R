@@ -11,22 +11,22 @@
 #'
 #' @export
 bigESS <- function(sce,celltypes,aggmethod,specmethod) {
-  
+
   # REduce sce object to cell types of interest
   mysce <- sce[,dittoSeq::meta("label",sce) %in% celltypes]
   # Aggregate counts by celltype
-  aggr_counts <- t(Matrix.utils::aggregate.Matrix(t(counts(mysce)), groupings = factor(meta("label",mysce)), fun = aggmethod) )
+  aggr_counts <- t(Matrix.utils::aggregate.Matrix(t(counts(mysce)), groupings = factor(dittoSeq::meta("label",mysce)), fun = aggmethod) )
   x <- as.matrix(aggr_counts)
-  
+
   # Now do the specificity
   if (specmethod == "Arda") {
-    mySums <- rowSums(x) 
+    mySums <- rowSums(x)
     essmat <- x/mySums
     return(essmat)
   }
   if (specmethod == "gini") {
     return(edgeR::gini(t(x)))
   }
-  
-  
+
+
 }
