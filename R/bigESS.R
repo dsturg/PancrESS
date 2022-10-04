@@ -17,8 +17,9 @@ bigESS <- function(sce,celltypes,aggmethod,specmethod) {
   # Aggregate counts by celltype
   mymat <- as.matrix(counts(mysce))
   mymat <- t(mymat)
-  aggr_counts <- t(Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("label",mysce)), fun = aggmethod) )
+  aggr_counts <- Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("label",mysce)), fun = aggmethod)
   x <- as.matrix(aggr_counts)
+  x <- t(x)
 
   # Now do the specificity
   if (specmethod == "Arda") {
