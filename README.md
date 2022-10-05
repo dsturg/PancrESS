@@ -5,7 +5,7 @@ Tools for calculation of expression specificity metrics in RNA-Seq data
 <!-- GETTING STARTED -->
 # Getting Started
 
-The steps below will guide through the steps required to perform the analysis. \
+The steps below will guide through the steps required to perform the analysis.
 
 # Prerequisites
 
@@ -38,4 +38,34 @@ To see the full list of exported functions:
 ```{r}
 library("PancrESS")
 ls("package:PancrESS")
+```
+
+# Usage
+
+The core function of this package is to return a set of expression specificity metrics from a matrix of gene expression measurements.
+Here is an example using a dataset in the scRNAseq package
+
+```{r}
+
+
+# Make a single-cell experiment object
+# This has 16k genes, 7k samples
+sce <- BaronPancreasData('human')
+
+# The data are now in a 'SingleCellExperiment' object
+sce
+
+# Filter for low counts
+geneSums <- rowSums(counts(sce))
+sce <- sce[geneSums >= 2,]
+
+# See the cell types that are pre-labelled in this object
+table(meta("label",sce))
+
+# Calculate ESS scores for selected cell types
+# using 'median' as the aggregation method
+
+foo <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","FracDetailed")
+
+
 ```
