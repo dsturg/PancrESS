@@ -65,7 +65,7 @@ table(meta("label",sce))
 # Calculate ESS scores for selected cell types
 # using 'median' as the aggregation method
 
-foo <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","FracDetailed")
+myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
 
 
 ```

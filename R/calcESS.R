@@ -19,12 +19,12 @@ calcESS <- function (sce, celltypes, aggmethod, specmethod)
                                                                                          mysce)), fun = aggmethod)
   x <- as.matrix(aggr_counts)
   x <- t(x)
-  if (specmethod == "Frac") {
+  if (specmethod == "ESS") {
     mySums <- rowSums(x)
     essmat <- x/mySums
     return(essmat)
   }
-  if (specmethod == "FracDetailed") {
+  if (specmethod == "ESSDetailed") {
     mySums <- rowSums(x) 
     essmat <- x/mySums
     bigmat <- as.data.frame(cbind(x,essmat))
