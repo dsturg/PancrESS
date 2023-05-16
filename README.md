@@ -20,7 +20,10 @@ https://cran.r-project.org/web/packages/Matrix.utils/index.html
 https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html
 * dittoSeq (>= 1.0.2)
 https://bioconductor.org/packages/release/bioc/html/dittoSeq.html
-
+* edgeR (>= 3.40.2)
+https://bioconductor.org/packages/release/bioc/html/edgeR.html
+# scRNAseq (>= 2.12.0)
+https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html
 
 # Installation
 
@@ -39,6 +42,12 @@ To see the full list of exported functions:
 library("PancrESS")
 ls("package:PancrESS")
 ```
+
+# Data preparation
+
+Prior to calculating expression specificity, you need to compile the relevant count data. PancrESS will accept count data packaged in SingleCellExperiment objects, Seurat objects, or tables
+
+
 
 # Usage
 
@@ -69,3 +78,9 @@ myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed"
 
 
 ```
+
+# Shiny app
+
+To query pancreatic ESS scores along with UMAPs, please see:
+https://transcriptomics.shinyapps.io/ShinyProjectESS/
+

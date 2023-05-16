@@ -1,0 +1,27 @@
+---
+title: "Examples"
+author: "Dave"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# SEe https://github.com/dsturg/PancrESS
+library('edgeR')
+library('Matrix.utils')
+library('scRNAseq')
+library('dittoSeq')
+```
+
+# Load data
+
+```{r}
+sce <- BaronPancreasData('human')
+```
+
+# Calc ess
+
+```{r}
+myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
+```
