@@ -1,7 +1,10 @@
-# PancrESS
+# _PancrESS__
 
-Tools for visualization and calculation of expression specificity metrics in RNA-Seq data
-![Alt text](img/PancrESS_logo.png_?raw=true "PancrESS")
+![PancrESS](img/PancrESS_logo.png?raw=true "PancrESS")
+A database for expression specificity visualization and tools for calculation of expression specificity scores in RNA-Seq data
+<br>
+
+
 <!-- GETTING STARTED -->
 # Getting Started
 
@@ -48,9 +51,6 @@ ls("package:PancrESS")
 Prior to calculating expression specificity, you need to compile the relevant count data. PancrESS will accept count data packaged in SingleCellExperiment objects, Seurat objects, or tables
 
 ```{r}
-
-#print(load(usethis::use_data("data")))
-#print(load(usethis::use_data("data")))
 print(load("data/metapancreas_cellXstudy_DESeq.Rdata"))
 ```
 
@@ -84,11 +84,6 @@ myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed"
 
 ```
 
-# This example starts from DESeq object
-```{r}
-
-
-```
 
 # Shiny app
 
