@@ -1,7 +1,6 @@
-# _PancrESS__
 
 ![PancrESS](img/PancrESS_logo.png?raw=true "PancrESS")
-A database for expression specificity visualization and tools for calculation of expression specificity scores in RNA-Seq data
+## PancrESS: A database for expression specificity visualization and tools for calculation of expression specificity scores in RNA-Seq data
 <br>
 
 
