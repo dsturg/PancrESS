@@ -10,13 +10,19 @@
 #' @return A either a matrix or a vector, depending on the method used
 #'
 #' @export
-calcESS <- function (sce, celltypes, aggmethod, specmethod) 
+calcESS <- function (sce, celltypes, aggmethod, specmethod)
 {
-  mysce <- sce[, dittoSeq::meta("label", sce) %in% celltypes]
-  mymat <- as.matrix(counts(mysce))
-  mymat <- t(mymat)
-  aggr_counts <- Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("label", 
-                                                                                         mysce)), fun = aggmethod)
+  if (isa(sce,"DESeqDataSet")) {
+    mysce <- sce[, dittoSeq::meta("celltype", sce) %in% celltypes]
+    mymat <- as.matrix(counts(mysce,normalize=TRUE))
+    mymat <- t(mymat)
+    aggr_counts <- Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("celltype",mysce)), fun = aggmethod)
+  } else {
+    mysce <- sce[, dittoSeq::meta("label", sce) %in% celltypes]
+    mymat <- as.matrix(counts(mysce))
+    mymat <- t(mymat)
+    aggr_counts <- Matrix.utils::aggregate.Matrix(mymat, groupings = factor(dittoSeq::meta("label",mysce)), fun = aggmethod)
+  }
   x <- as.matrix(aggr_counts)
   x <- t(x)
   if (specmethod == "ESS") {
@@ -25,7 +31,7 @@ calcESS <- function (sce, celltypes, aggmethod, specmethod)
     return(essmat)
   }
   if (specmethod == "ESSDetailed") {
-    mySums <- rowSums(x) 
+    mySums <- rowSums(x)
     essmat <- x/mySums
     bigmat <- as.data.frame(cbind(x,essmat))
     bigmat$ESS_one_per_gene <- apply(essmat,1,max)
@@ -38,6 +44,6 @@ calcESS <- function (sce, celltypes, aggmethod, specmethod)
   if (specmethod == "tau") {
     return(tau(x))
   }
-  
+
 }
 
