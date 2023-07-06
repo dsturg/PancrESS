@@ -87,5 +87,5 @@ myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed"
 # Shiny app
 
 To query pancreatic ESS scores along with UMAPs, please see:
-https://transcriptomics.shinyapps.io/ShinyProjectESS/
+https://transcriptomics.shinyapps.io/PancrESSdb/
 
