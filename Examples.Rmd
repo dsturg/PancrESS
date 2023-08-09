@@ -24,4 +24,22 @@ sce <- BaronPancreasData('human')
 
 ```{r}
 myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
+
+# You can filter to include only genes at
+# some maximum expression level, for example:
+
+myESS <- subset(myESS, Max_expr >= 100)
+head(myESS)
+
+# This is an example of using the gini coefficient
+# Note this returns a vector
+myGini <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","gini")
+myGini[1:3]
+
+# This is an example of using tau
+# This also returns a vector
+myTau <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","tau")
+myTau[1:3]
+
+
 ```

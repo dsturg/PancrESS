@@ -80,6 +80,35 @@ table(meta("label",sce))
 
 myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
 
+# You can filter to include only genes at
+# some maximum expression level, for example:
+
+myESS <- subset(myESS, Max_expr >= 100)
+head(myESS)
+
+       acinar alpha beta ductal   acinar.1     alpha.1     beta.1    ductal.1 ESS_one_per_gene Max_expr
+A1CF      132  1017  370     77 0.08270677 0.637218045 0.23182957 0.048245614        0.6372180     1017
+A4GALT     10    17    5    265 0.03367003 0.057239057 0.01683502 0.892255892        0.8922559      265
+AAAS      200   433  491    196 0.15151515 0.328030303 0.37196970 0.148484848        0.3719697      491
+AACS       93   551  790    164 0.05819775 0.344806008 0.49436796 0.102628285        0.4943680      790
+AADAC    1415    11   19     13 0.97050754 0.007544582 0.01303155 0.008916324        0.9705075     1415
+AAED1      89   446  407     85 0.08666018 0.434274586 0.39629990 0.082765336        0.4342746      446
+
+# This is an example of using the gini coefficient
+# Note this returns a vector
+myGini <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","gini")
+myGini[1:3]
+
+     A1BG      A1CF       A2M 
+0.5178571 0.4790100 0.2222222 
+
+# This is an example of using tau
+# This also returns a vector
+myTau <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","tau")
+myTau[1:3]
+
+     A1BG      A1CF       A2M 
+0.8148148 0.8102262 0.3333333 
 
 ```
 
