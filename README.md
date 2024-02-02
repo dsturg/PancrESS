@@ -18,20 +18,19 @@ This is a list of components needed:
 R packages required:
 * Matrix.utils (>= 0.9.8)
 https://cran.r-project.org/web/packages/Matrix.utils/index.html
-* scRNAseq (>= 2.2.0)
+* scRNAseq (>= 2.12.0)
 https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html
 * dittoSeq (>= 1.0.2)
 https://bioconductor.org/packages/release/bioc/html/dittoSeq.html
 * edgeR (>= 3.40.2)
 https://bioconductor.org/packages/release/bioc/html/edgeR.html
-# scRNAseq (>= 2.12.0)
-https://bioconductor.org/packages/release/data/experiment/html/scRNAseq.html
+
 
 # Installation
 
 Install the latest version of this package by entering the following in R:
 
-```r
+```{r}
 devtools::install_github("dsturg/PancrESS",ref="master")
 library('PancrESS')
 ```
@@ -76,9 +75,10 @@ sce <- sce[geneSums >= 2,]
 table(meta("label",sce))
 
 # Calculate ESS scores for selected cell types
-# using 'median' as the aggregation method
+# using 'mean' as the aggregation method
+# Supported methods are 'mean','sum',and 'count'
 
-myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
+myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"sum","ESSDetailed")
 
 # You can filter to include only genes at
 # some maximum expression level, for example:
@@ -117,4 +117,8 @@ myTau[1:3]
 
 To query pancreatic ESS scores along with UMAPs, please see:
 https://transcriptomics.shinyapps.io/PancrESSdb/
+
+# Citation
+
+Sturgill D, Wang L, Arda HE. PancrESS - a meta-analysis resource for understanding cell-type specific expression in the human pancreas. BMC Genomics. 2024 Jan 18;25(1):76. doi: 10.1186/s12864-024-09964-y. PMID: 38238687; PMCID: PMC10797729.
 

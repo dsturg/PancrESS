@@ -7,11 +7,14 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# SEe https://github.com/dsturg/PancrESS
+# See https://github.com/dsturg/PancrESS
 library('edgeR')
 library('Matrix.utils')
 library('scRNAseq')
 library('dittoSeq')
+library('PancrESS')
+# Install PancrESS using:
+# devtools::install_github("dsturg/PancrESS",ref="master")
 ```
 
 # Load data
@@ -20,7 +23,7 @@ library('dittoSeq')
 sce <- BaronPancreasData('human')
 ```
 
-# Calc ess
+# Calculate ess
 
 ```{r}
 myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"median","ESSDetailed")
@@ -43,3 +46,21 @@ myTau[1:3]
 
 
 ```
+
+# Using pancreatic metadata
+## Below you can load the data as a DESeqDataSet object
+
+```{r}
+library('DESeq2')
+print(load("data/metapancreas_cellXstudy_DESeq.Rdata"))
+
+myESSpan <- calcESS(metapancreas_cellXstudy_DESeq,celltypes = c("acinar","alpha","beta","delta","ductal"),aggmethod="sum",specmethod="ESSDetailed")
+myESSpan <- subset(myESSpan, Max_expr >= 100)
+head(myESSpan)
+
+# Notes:
+# Aggregation methods supported include "sum","mean", and "count."
+# Median is preferred, so this functionality is being added
+
+```
+
