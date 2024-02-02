@@ -75,7 +75,7 @@ sce <- sce[geneSums >= 2,]
 table(meta("label",sce))
 
 # Calculate ESS scores for selected cell types
-# using 'mean' as the aggregation method
+# using 'sum' as the aggregation method
 # Supported methods are 'mean','sum',and 'count'
 
 myESS <- calcESS(sce,c("alpha", "beta","acinar","ductal"),"sum","ESSDetailed")
